@@ -29,17 +29,17 @@ const OrderTable = ({ orders, setActiveOrders, onSave, isReadOnly }) => {
   };
 
   const formatDate = (timestamp) => {
-    // Create a Date object from the timestamp
+
     const dateObject = new Date(timestamp);
   
-    // Extract date and time components separately
-    const date = dateObject.toLocaleDateString('en-US'); // Format the date only
-    const time = dateObject.toLocaleTimeString('en-US', { // Format the time only
+   
+    const date = dateObject.toLocaleDateString('en-US');
+    const time = dateObject.toLocaleTimeString('en-US', { 
       hour: '2-digit',
       minute: '2-digit',
     });
   
-    // Combine date and time with a space (no "at")
+    
     return `${date} ${time}`;
   };
   
