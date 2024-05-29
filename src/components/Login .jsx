@@ -10,6 +10,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import 'tailwindcss/tailwind.css'; // Ensure Tailwind CSS is imported
 
 const Login = ({ onLogin }) => {
   const [username, setUsername] = useState("");
@@ -34,40 +35,38 @@ const Login = ({ onLogin }) => {
   };
 
   return (
-    <Box
-      maxW="md"
-      mx="auto"
-      mt="10%"
-      p={6}
-      borderWidth="1px"
-      borderRadius="lg"
-      boxShadow="lg"
-    >
-      <Heading mb={6} textAlign="center">
-        Login
-      </Heading>
-      <FormControl id="username" mb={4}>
-        <FormLabel>Username</FormLabel>
-        <Input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </FormControl>
-      <FormControl id="password" mb={4}>
-        <FormLabel>Password</FormLabel>
-        <Input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </FormControl>
-      <Stack direction="row" spacing={4} justify="flex-end">
-        <Button colorScheme="teal" onClick={handleLogin}>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <Box
+        className="max-w-md w-full bg-white rounded-lg shadow-lg p-6"
+      >
+        <Heading mb={6} textAlign="center">
           Login
-        </Button>
-      </Stack>
-    </Box>
+        </Heading>
+        <FormControl id="username" mb={4}>
+          <FormLabel className="">Username</FormLabel>
+          <Input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="border border-gray-300 rounded-md p-2"
+          />
+        </FormControl>
+        <FormControl id="password" mb={4}>
+          <FormLabel>Password</FormLabel>
+          <Input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="border border-gray-300 rounded-md p-2"
+          />
+        </FormControl>
+        <Stack direction="row" spacing={4} justify="flex-end">
+          <Button colorScheme="teal" onClick={handleLogin} className="w-full">
+            Login
+          </Button>
+        </Stack>
+      </Box>
+    </div>
   );
 };
 
