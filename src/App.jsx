@@ -1,30 +1,34 @@
-
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { ChakraProvider } from '@chakra-ui/react';
-import LoginPage from './components/LoginPage';
-import Dashboard from './pages/Dashboard';
-import theme from './theme';  
-
-const PrivateRoute = ({ children }) => {
-  return localStorage.getItem('authenticated') ? children : <Navigate to="/login" />;
-};
+import React, { useState } from 'react';
+import { ChakraProvider, Box, Flex } from '@chakra-ui/react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Sidebar from './components/Sidebar';
+import Login from './components/Login ';
+import Dashboard from './components/Dashboard';
+import Header from './components/Header';
 
 const App = () => {
+  const [user, setUser] = useState(null);
+
+  const handleLogin = (username) => {
+    setUser(username);
+  };
+
   return (
-    <ChakraProvider theme={theme}>
+    <ChakraProvider>
       <Router>
-        <Routes>
-      
-          <Route path="/login" element={<LoginPage />} />
-          <Route
-            path="/dashboard"
-            element={
-              <PrivateRoute>
-                <Dashboard />
-              </PrivateRoute>
-            }
-          />
-        </Routes>
+        <Flex minHeight="100vh">
+          {user && <Sidebar />}
+          <Box flex="1">
+            {user && <Header />}
+            <Box p={4}>
+              <Routes>
+                <Route path="/login" element={<Login onLogin={handleLogin} />} />
+                <Route path="/dashboard" element={user ? <Dashboard /> : <Login onLogin={handleLogin} />} />
+                <Route path="/" element={<Login onLogin={handleLogin} />} />
+              </Routes>
+            </Box>
+          </Box>
+        </Flex>
       </Router>
     </ChakraProvider>
   );
