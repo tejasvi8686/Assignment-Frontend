@@ -1,12 +1,15 @@
-
-import { useColorMode } from '@chakra-ui/react';
+import React from 'react';
+import { Switch, useColorMode } from '@chakra-ui/react';
 
 const ThemeToggle = () => {
   const { colorMode, toggleColorMode } = useColorMode();
+
   return (
-    <button onClick={toggleColorMode}>
-      Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
-    </button>
+    <Switch
+      colorScheme="teal"
+      isChecked={colorMode === 'dark'}
+      onChange={toggleColorMode}
+    />
   );
 };
 
