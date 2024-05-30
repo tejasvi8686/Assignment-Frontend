@@ -94,6 +94,8 @@ const OrderTable = ({ orders, setActiveOrders, onSave, isReadOnly }) => {
         order={selectedOrder}
         setActiveOrders={setActiveOrders}
         onSave={onSave}
+
+        
       />
     </>
   );
